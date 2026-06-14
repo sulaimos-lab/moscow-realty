@@ -1,279 +1,257 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Подбор новостроек в Москве 2026 — Закрытый каталог застройщиков</title>
-    <!-- Tailwind CSS для потрясающего современного дизайна -->
+    <title>Подбор параметров недвижимости</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Montserrat для заголовков, Inter для текста -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome для иконок -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-white font-sans antialiased flex flex-col min-h-screen">
+
+    <div class="flex-grow flex items-center justify-center px-4 py-12">
+        <div class="max-w-xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+            
+            <!-- Индикатор прогресса -->
+            <div class="mb-8">
+                <div class="flex justify-between text-xs text-slate-400 font-medium mb-2">
+                    <span id="progress-text">Вопрос 1 из 4</span>
+                    <span id="progress-percent">25% готово</span>
+                </div>
+                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-amber-400 to-orange-500 h-full transition-all duration-300" style="width: 25%"></div>
+                </div>
+            </div>
+
+            <!-- ФОРМА КВИЗА -->
+            <div id="quiz-steps">
+                
+                <!-- Шаг 1: Бюджет -->
+                <div class="quiz-step" data-step="1">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-6">1. Каков планируемый бюджет покупки?</h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center p-4 bg-slate-800/50 border border-slate-700/60 rounded-xl cursor-pointer hover:bg-slate-800 hover:border-amber-500/50 transition">
+                            <input type="radio" name="budget" value="До 12 млн руб" class="w-4 h-4 text-amber-500 focus:ring-amber-500 bg-slate-700 border-slate-600" checked>
+                            <span class="ml-3 font-medium text-slate-200">До 12 млн рублей</span>
+                        </label>
+                        <label class="flex items-center p-4 bg-slate-800/50 border border-slate-700/60 rounded-xl cursor-pointer hover:bg-slate-800 hover:border-amber-500/50 transition">
+                            <input type="radio" name="budget" value="12 - 25 млн руб" class="w-4 h-4 text-amber-500 focus:ring-amber-500 bg-slate-700 border-slate-600">
+                            <span class="ml-3 font-medium text-slate-200">12 – 25 млн рублей</span>
+                        </label>
+                        <label class="flex items-center p-4 bg-slate-800/50 border border-slate-700/60 rounded-xl cursor-pointer hover:bg-slate-800 hover:border-amber-500/50 transition">
+                            <input type="radio" name="budget" value="25 - 50 млн руб" class="w-4 h-4 text-amber-500 focus:ring-amber-500 bg-slate-700 border-slate-600">
+                            <span class="ml-3 font-medium text-slate-200">25 – 50 млн рублей</span>
+                        </label>
+                        <label class="flex items-center p-4 bg-slate-800/50 border border-slate-700/60 rounded-xl cursor-pointer hover:bg-slate-800 hover:border-amber-500/50 transition">
+                            <input type="radio" name="budget" value="Более 50 млн руб" class="w-4 h-4 text-amber-500 focus:ring-amber-500 bg-slate-700 border-slate-600">
+                            <span class="ml-3 font-medium text-slate-200">Более 50 млн рублей</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Шаг 2: Комнатность (Скрыт по умолчанию) -->
+                <div class="quiz-step hidden" data-step="2">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-6">2. Какая комнатность вас интересует?</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="flex flex-col items-center justify-center p-4 bg-slate-800/50 border border-slate-700/60 rounded-xl cursor-pointer hover:bg-slate-800 hover:border-amber-500/50 transition text-center">
+                            <input type="radio" name="rooms" value="Студия / 1к" class="sr-only" checked>
+                            <span class="font-bold text-lg text-amber-400">1к / Студия</span>
+                        </label>
+                        <label class="flex flex-col items-center justify-center p-4 bg-slate-800/50 border border-slate-700/60 rounded-xl cursor-pointer hover:bg-slate-800 hover:border-amber-500/50 transition text-center">
+                            <input type="radio" name="rooms" value="2-комнатная" class="sr-only">
+                            <span class="font-bold text-lg text-amber-400">2-комнатная</span>
+                        </label>
+                        <label class="flex flex-col items-center justify-center p-4 bg-slate-800/50 border border-slate-700/60 rounded-xl cursor-pointer hover:bg-slate-800 hover:border-amber-500/50 transition text-center">
+                            <input type="radio" name="rooms" value="3-комнатная+" class="sr-only">
+                            <span class="font-bold text-lg text-amber-400">3-комнатная+</span>
+                        </label>
+                        <label class="flex flex-col items-center justify-center p-4 bg-slate-800/50 border border-slate-700/60 rounded-xl cursor-pointer hover:bg-slate-800 hover:border-amber-500/50 transition text-center">
+                            <input type="radio" name="rooms" value="Апартаменты" class="sr-only">
+                            <span class="font-bold text-lg text-amber-400">Апартаменты</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Шаг 3: Район -->
+                <div class="quiz-step hidden" data-step="3">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-6">3. Какой район Москвы в приоритете?</h3>
+                    <div class="space-y-3">
+                        <select id="region-select" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-4 text-white focus:outline-none focus:border-amber-500">
+                            <option value="Центр (ЦАО)">Центр (ЦАО)</option>
+                            <option value="Запад / Юго-Запад">Запад / Юго-Запад (ЗАО, ЮЗАО)</option>
+                            <option value="Север / Северо-Запад">Север / Северо-Запад (САО, СЗАО)</option>
+                            <option value="Восток / Юго-Восток">Восток / Юго-Восток (ВАО, ЮВАО)</option>
+                            <option value="Новая Москва">Новая Москва (ТиНАО)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Шаг 4: Контакты -->
+                <div class="quiz-step hidden" data-step="4">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-2 text-center text-amber-400">Готово! Каталог сформирован</h3>
+                    <p class="text-sm text-slate-400 text-center mb-6">Введите ваш номер телефона. Мы пришлем подборку предложений со ставками от 3.5% в Telegram / WhatsApp</p>
+                    <div class="space-y-4">
+                        <input type="tel" id="client-phone" placeholder="+7 (999) 999-99-99" required class="w-full bg-slate-800 border border-slate-700 rounded-xl p-4 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 text-center text-xl font-bold tracking-wider">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Кнопки управления навигацией квиза -->
+            <div class="flex items-center justify-between mt-8 pt-6 border-t border-slate-800">
+                <button id="btn-back" onclick="changeStep(-1)" class="px-5 py-2.5 text-sm font-semibold rounded-lg text-slate-400 hover:text-white transition invisible">
+                    Назад
+                </button>
+                <button id="btn-next" onclick="changeStep(1)" class="px-6 py-3 text-sm font-bold bg-gradient-to-r from-amber-400 to-orange-500 rounded-xl text-slate-950 hover:from-amber-300 hover:to-orange-400 transition shadow-lg shadow-orange-500/10">
+                    Далее
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- СКРЫТЫЙ СЕРВИСНЫЙ МОДУЛЬ НАСТРОЕК (ДЛЯ ТЕБЯ) -->
+    <div id="config-gear" onclick="toggleModal(true)" class="fixed bottom-4 right-4 text-slate-700 hover:text-slate-500 cursor-pointer text-xl select-none transition">⚙️</div>
     
+    <div id="config-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl max-w-sm w-full shadow-2xl">
+            <h4 class="text-base font-bold text-white mb-4 flex items-center justify-between">
+                <span>Панель интеграции Telegram</span>
+                <button onclick="toggleModal(false)" class="text-slate-400 text-sm">&times;</button>
+            </h4>
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Telegram Bot Token</label>
+                    <input type="text" id="cfg-token" class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-xs text-white">
+                </div>
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Ваш Chat ID</label>
+                    <input type="text" id="cfg-chatid" class="w-full bg-slate-800 border border-slate-700 p-2 rounded text-xs text-white">
+                </div>
+                <div class="grid grid-cols-2 gap-2 pt-2">
+                    <button onclick="saveConfig()" class="bg-emerald-600 text-white text-xs font-bold py-2 rounded hover:bg-emerald-500 transition">Сохранить</button>
+                    <button onclick="testConfig()" class="bg-slate-800 text-slate-300 text-xs font-bold py-2 rounded hover:bg-slate-700 transition">Тест связи</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Скрипт управления квизом -->
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        montserrat: ['Montserrat', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#0f172a', /* slate-900 */
-                            card: '#1e293b', /* slate-800 */
-                            gold: '#d97706', /* amber-600 */
-                            goldHover: '#b45309', /* amber-700 */
-                            textLight: '#f1f5f9', /* slate-100 */
-                            textMuted: '#94a3b8', /* slate-400 */
-                        }
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        // Инициализация полей из локальной памяти при загрузче
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('cfg-token').value = localStorage.getItem('tg_token') || '';
+            document.getElementById('cfg-chatid').value = localStorage.getItem('tg_chatid') || '';
+            
+            // Стилизация выбранных кастомных блоков на 2 шаге
+            const roomOptions = document.querySelectorAll('input[name="rooms"]');
+            roomOptions.forEach(opt => {
+                opt.addEventListener('change', () => {
+                    roomOptions.forEach(o => o.parentElement.classList.remove('border-amber-500', 'bg-slate-800'));
+                    if (opt.checked) opt.parentElement.classList.add('border-amber-500', 'bg-slate-800');
+                });
+            });
+        });
+
+        function toggleModal(show) {
+            document.getElementById('config-modal').style.display = show ? 'flex' : 'none';
+        }
+
+        function saveConfig() {
+            localStorage.setItem('tg_token', document.getElementById('cfg-token').value.trim());
+            localStorage.setItem('tg_chatid', document.getElementById('cfg-chatid').value.trim());
+            alert('Конфигурация успешно сохранена в браузер!');
+            toggleModal(false);
+        }
+
+        function testConfig() {
+            const token = document.getElementById('cfg-token').value.trim();
+            const chatId = document.getElementById('cfg-chatid').value.trim();
+            if(!token || !chatId) return alert('Заполните оба поля!');
+            
+            fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: chatId, text: '✅ Связь с МСК-Квизом установлена корректно!' })
+            }).then(res => res.ok ? alert('Тест пройден! Сообщение отправлено.') : alert('Ошибка отправки. Проверьте данные.'));
+        }
+
+        function changeStep(direction) {
+            if (direction === 1 && currentStep === totalSteps) {
+                submitQuiz();
+                return;
+            }
+
+            // Прячем текущий шаг
+            document.querySelector(`.quiz-step[data-step="${currentStep}"]`).classList.add('hidden');
+            
+            currentStep += direction;
+            
+            // Показываем новый шаг
+            document.querySelector(`.quiz-step[data-step="${currentStep}"]`).classList.remove('hidden');
+
+            // Управление видимостью кнопки Назад
+            const btnBack = document.getElementById('btn-back');
+            if (currentStep > 1) btnBack.classList.remove('invisible');
+            else btnBack.classList.add('invisible');
+
+            // Текст кнопки Далее на финальном шаге
+            const btnNext = document.getElementById('btn-next');
+            if (currentStep === totalSteps) {
+                btnNext.innerText = 'Получить подборку';
+                btnNext.classList.replace('from-amber-400', 'from-emerald-400');
+                btnNext.classList.replace('to-orange-500', 'to-teal-500');
+            } else {
+                btnNext.innerText = 'Далее';
+                btnNext.className = btnNext.className.replace(/from-emerald-400|to-teal-500/g, 'from-amber-400 to-orange-500');
+            }
+
+            // Обновление прогресс-бара
+            const percent = Math.round((currentStep / totalSteps) * 100);
+            document.getElementById('progress-text').innerText = `Вопрос ${currentStep} из ${totalSteps}`;
+            document.getElementById('progress-percent').innerText = `${percent}% готово`;
+            document.getElementById('progress-bar').style.width = `${percent}%`;
+        }
+
+        function submitQuiz() {
+            const phone = document.getElementById('client-phone').value.trim();
+            if (!phone) {
+                alert('Пожалуйста, введите корректный номер телефона для отправки.');
+                return;
+            }
+
+            const token = localStorage.getItem('tg_token');
+            const chatId = localStorage.getItem('tg_chatid');
+
+            const budget = document.querySelector('input[name="budget"]:checked').value;
+            const rooms = document.querySelector('input[name="rooms"]:checked').value;
+            const region = document.getElementById('region-select').value;
+
+            const textMessage = `🔥 **Новый лид по недвижимости (Москва)**\n\n` +
+                                `💰 Бюджет: ${budget}\n` +
+                                `🛏 Комнатность: ${rooms}\n` +
+                                `📍 Район: ${region}\n` +
+                                `📱 Телефон клиента: ${phone}`;
+
+            if (token && chatId) {
+                fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: chatId, text: textMessage, parse_mode: 'Markdown' })
+                }).then(res => {
+                    if(res.ok) {
+                        alert('Спасибо! Ваша заявка принята. Менеджер свяжется с вами.');
+                        window.location.href = 'index.html';
+                    } else {
+                        alert('Произошла ошибка при отправке через Telegram API. Проверьте настройки токена.');
                     }
-                }
+                });
+            } else {
+                alert('Внимание! Заявка имитирована, но настройки Telegram-бота не заполнены в шестеренке.');
             }
         }
     </script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: #f1f5f9;
-        }
-        /* Кастомный скроллбар для эстетики */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d97706;
-            border-radius: 4px;
-        }
-    </style>
-</head>
-<body class="min-height-screen flex flex-col justify-between">
-
-    <!-- HEADER -->
-    <header class="border-b border-slate-800 bg-brand-dark/90 backdrop-blur sticky top-0 z-40">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="bg-brand-gold text-brand-dark p-2 rounded-lg font-bold flex items-center justify-center">
-                    <i class="fa-solid fa-city text-xl"></i>
-                </div>
-                <div>
-                    <span class="font-montserrat font-bold text-lg tracking-wider block text-white">MOSCOW <span class="text-brand-gold">EXPERT</span></span>
-                    <span class="text-xs text-brand-textMuted block -mt-1">Единый центр подбора новостроек</span>
-                </div>
-            </div>
-            
-            <div class="hidden md:flex items-center space-x-6 text-sm">
-                <div class="flex items-center space-x-2 text-brand-textMuted">
-                    <i class="fa-solid fa-circle-check text-brand-gold"></i>
-                    <span>База обновлена: <b class="text-white" id="today-date">сегодня</b></span>
-                </div>
-                <div class="flex items-center space-x-2 text-brand-textMuted">
-                    <i class="fa-solid fa-percent text-brand-gold"></i>
-                    <span>Услуги подбора <b class="text-white">0% комиссии</b></span>
-                </div>
-            </div>
-
-            <div>
-                <a href="tel:+74950000000" id="header-phone-link" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold py-2 px-4 rounded-xl border border-slate-700 transition flex items-center space-x-2 text-sm">
-                    <i class="fa-solid fa-phone text-brand-gold"></i>
-                    <span id="phone-display">+7 (495) 120-45-88</span>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- MAIN HERO / QUIZ SECTION -->
-    <main class="flex-grow flex items-center justify-center py-6 px-4">
-        <div class="max-w-5xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            <!-- LEFT: Persuasive Text -->
-            <div class="lg:col-span-5 space-y-6 text-left">
-                <div class="inline-flex items-center space-x-2 bg-brand-gold/10 text-brand-gold px-3 py-1.5 rounded-full border border-brand-gold/20 text-xs font-semibold tracking-wide">
-                    <span class="flex h-2 w-2 relative">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-gold"></span>
-                    </span>
-                    <span>Эксклюзивные субсидии от 3.5% годовых</span>
-                </div>
-                
-                <h1 class="font-montserrat font-bold text-3xl md:text-4xl text-white leading-tight">
-                    Пройдите тест за 1 мин и заберите каталог <span class="text-brand-gold">ТОП-15 новостроек</span> Москвы по спец-тарифам
-                </h1>
-                
-                <p class="text-brand-textMuted text-base md:text-lg">
-                    Мы собрали все закрытые предложения застройщиков на лето 2026 года со скидками до 12% и лимитами по семейной ипотеке.
-                </p>
-
-                <!-- Benefits Bullet List -->
-                <div class="space-y-3 pt-2">
-                    <div class="flex items-start space-x-3">
-                        <div class="mt-1 bg-brand-gold/20 text-brand-gold p-1 rounded-md text-xs">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
-                        <p class="text-sm text-brand-textLight"><b>Каталог стартов продаж:</b> Объекты на котловане с окупаемостью от 25% годовых</p>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="mt-1 bg-brand-gold/20 text-brand-gold p-1 rounded-md text-xs">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
-                        <p class="text-sm text-brand-textLight"><b>Ипотечный калькулятор:</b> Расчет платежей по субсидиям застройщиков (от 3.5% до 6%)</p>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <div class="mt-1 bg-brand-gold/20 text-brand-gold p-1 rounded-md text-xs">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
-                        <p class="text-sm text-brand-textLight"><b>Сертификат на дизайн-проект:</b> Дарим при прохождении теста сегодня</p>
-                    </div>
-                </div>
-
-                <!-- Live social proof -->
-                <div class="p-4 bg-slate-800/50 rounded-2xl border border-slate-800 flex items-center space-x-4">
-                    <div class="flex -space-x-3">
-                        <img class="w-9 h-9 rounded-full border-2 border-slate-900 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Клиент">
-                        <img class="w-9 h-9 rounded-full border-2 border-slate-900 object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Клиент">
-                        <img class="w-9 h-9 rounded-full border-2 border-slate-900 object-cover" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=100&q=80" alt="Клиент">
-                    </div>
-                    <p class="text-xs text-brand-textMuted leading-snug">
-                        <b class="text-white">Более 340 человек</b> уже получили расчеты и каталоги на этой неделе в Москве.
-                    </p>
-                </div>
-            </div>
-
-            <!-- RIGHT: Interactive Quiz Card -->
-            <div class="lg:col-span-7 bg-brand-card rounded-3xl border border-slate-800 p-6 md:p-8 shadow-2xl relative overflow-hidden flex flex-col justify-between min-h-[500px]">
-                
-                <!-- Background visual decoration (premium subtle abstract shapes) -->
-                <div class="absolute -top-24 -right-24 w-48 h-48 bg-brand-gold/5 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-slate-500/5 rounded-full blur-3xl pointer-events-none"></div>
-
-                <!-- Quiz Progress Bar Header -->
-                <div class="relative z-10">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-xs uppercase font-semibold text-brand-gold tracking-wider">Шаг <span id="current-step-display">1</span> из 5</span>
-                        <span class="text-xs text-brand-textMuted" id="progress-percent">20% пройдено</span>
-                    </div>
-                    <div class="w-full bg-slate-900 rounded-full h-2 mb-6">
-                        <div class="bg-brand-gold h-2 rounded-full transition-all duration-300" id="progress-bar" style="width: 20%;"></div>
-                    </div>
-                </div>
-
-                <!-- QUIZ STEPS CONTAINER -->
-                <form id="quiz-form" onsubmit="event.preventDefault();" class="relative z-10 flex-grow flex flex-col justify-center">
-                    
-                    <!-- STEP 1: Purpose -->
-                    <div class="quiz-step" id="step-1">
-                        <h3 class="font-montserrat font-semibold text-xl text-white mb-6">С какой целью планируете покупку квартиры?</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <label class="flex items-center space-x-3 p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition">
-                                <input type="radio" name="purpose" value="Для личного проживания" class="accent-brand-gold h-5 w-5" checked>
-                                <span class="text-brand-textLight text-base">Для себя / семьи</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition">
-                                <input type="radio" name="purpose" value="Для сдачи в аренду" class="accent-brand-gold h-5 w-5">
-                                <span class="text-brand-textLight text-base">Инвестиции (пассивный доход)</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition">
-                                <input type="radio" name="purpose" value="Для сохранения капитала" class="accent-brand-gold h-5 w-5">
-                                <span class="text-brand-textLight text-base">Перепродажа (рост цены)</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition">
-                                <input type="radio" name="purpose" value="Покупка детям на будущее" class="accent-brand-gold h-5 w-5">
-                                <span class="text-brand-textLight text-base">Детям на будущее</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- STEP 2: Budget -->
-                    <div class="quiz-step hidden" id="step-2">
-                        <h3 class="font-montserrat font-semibold text-xl text-white mb-6">Каков планируемый бюджет покупки?</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <label class="flex items-center space-x-3 p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition">
-                                <input type="radio" name="budget" value="До 10 млн рублей" class="accent-brand-gold h-5 w-5" checked>
-                                <span class="text-brand-textLight text-base">До 10 млн ₽ (комфорт класс)</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition">
-                                <input type="radio" name="budget" value="10 - 15 млн рублей" class="accent-brand-gold h-5 w-5">
-                                <span class="text-brand-textLight text-base">10 – 15 млн ₽</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition">
-                                <input type="radio" name="budget" value="15 - 25 млн рублей" class="accent-brand-gold h-5 w-5">
-                                <span class="text-brand-textLight text-base">15 – 25 млн ₽ (бизнес-класс)</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition">
-                                <input type="radio" name="budget" value="Свыше 25 млн рублей" class="accent-brand-gold h-5 w-5">
-                                <span class="text-brand-textLight text-base">Свыше 25 млн ₽ (премиум)</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- STEP 3: Rooms -->
-                    <div class="quiz-step hidden" id="step-3">
-                        <h3 class="font-montserrat font-semibold text-xl text-white mb-6">Какая комнатность вас интересует?</h3>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                            <label class="flex flex-col items-center justify-center p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition text-center space-y-2">
-                                <input type="checkbox" name="rooms" value="Студия" class="accent-brand-gold h-5 w-5" checked>
-                                <span class="text-brand-textLight text-sm font-semibold">Студия</span>
-                            </label>
-                            <label class="flex flex-col items-center justify-center p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition text-center space-y-2">
-                                <input type="checkbox" name="rooms" value="1-комнатная" class="accent-brand-gold h-5 w-5">
-                                <span class="text-brand-textLight text-sm font-semibold">1-к квартира</span>
-                            </label>
-                            <label class="flex flex-col items-center justify-center p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition text-center space-y-2">
-                                <input type="checkbox" name="rooms" value="2-комнатная" class="accent-brand-gold h-5 w-5">
-                                <span class="text-brand-textLight text-sm font-semibold">2-к квартира</span>
-                            </label>
-                            <label class="flex flex-col items-center justify-center p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition text-center space-y-2">
-                                <input type="checkbox" name="rooms" value="3+комнатная" class="accent-brand-gold h-5 w-5">
-                                <span class="text-brand-textLight text-sm font-semibold">3-к+ квартира</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- STEP 4: Mortgage Type -->
-                    <div class="quiz-step hidden" id="step-4">
-                        <h3 class="font-montserrat font-semibold text-xl text-white mb-6">Какая программа ипотеки вам подходит?</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <label class="flex items-center space-x-3 p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition">
-                                <input type="radio" name="mortgage" value="Семейная ипотека 6%" class="accent-brand-gold h-5 w-5" checked>
-                                <span class="text-brand-textLight text-base">Семейная ипотека (до 6%)</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition">
-                                <input type="radio" name="mortgage" value="Субсидия от застройщика 3.5%" class="accent-brand-gold h-5 w-5">
-                                <span class="text-brand-textLight text-base">Субсидия застройщика</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition">
-                                <input type="radio" name="mortgage" value="ИТ-ипотека" class="accent-brand-gold h-5 w-5">
-                                <span class="text-brand-textLight text-base">ИТ-ипотека</span>
-                            </label>
-                            <label class="flex items-center space-x-3 p-4 bg-slate-900 rounded-xl border border-slate-800 hover:border-brand-gold cursor-pointer transition">
-                                <input type="radio" name="mortgage" value="Наличные / Рассрочка" class="accent-brand-gold h-5 w-5">
-                                <span class="text-brand-textLight text-base">Рассрочка без % / Наличные</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- STEP 5: Final form -->
-                    <div class="quiz-step hidden text-center space-y-4" id="step-5">
-                        <div class="bg-brand-gold/10 inline-flex p-3 rounded-full border border-brand-gold/30 text-brand-gold mb-2">
-                            <i class="fa-solid fa-gift text-2xl"></i>
-                        </div>
-                        <h3 class="font-montserrat font-semibold text-xl text-white">Выборка сформирована!</h3>
-                        <p class="text-sm text-brand-textMuted max-w-md mx-auto">
-                            Введите ваши контактные данные, чтобы получить на WhatsApp или Telegram подборку ТОП-15 новостроек под ваши параметры и забронировать скидку застройщика.
-                        </p>
-                        
-                        <div class="max-w-md mx-auto space-y-3 pt-3">
-                            <input type="text" id="client-name" placeholder="Ваше имя" required class="w-full bg-slate-900 text-white placeholder-slate-500 rounded-xl py-3 px-4 border border-slate-800 focus:outline-none focus:border-brand-gold transition text-base">
-                            <input type="tel" id="client-phone" placeholder="+7 (___) ___-__-__" required class="w-full bg-slate-900 text-white placeholder-slate-500 rounded-xl py-3 px-4 border border-slate-800 focus:outline-none focus:border-brand-gold transition text-base">
-                            
-                            <!-- Platform Preferences Buttons -->
-                            <div class="grid grid-cols-3 gap-2 pt-1">
-  
+</body>
+</html>
